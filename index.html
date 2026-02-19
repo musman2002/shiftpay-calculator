@@ -1,22 +1,93 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>💰 shift • pay calculator</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+
+        <div class="card">
+    <h1>
+        ⏳ shift·pay
+        <span>time & rate</span>
+    </h1>
+    <div class="sub">enter shift start, end & hourly rate — pay calculated instantly</div>
+
+    <!-- main inputs -->
+    <div class="row-duo">
+        <div class="input-group">
+            <label><i>🚀</i> shift start</label>
+            <div class="field">
+                <span>🕒</span>
+                <input type="time" id="startTime" value="09:00">
+            </div>
+        </div>
+        <div class="input-group">
+            <label><i>🏁</i> shift end</label>
+            <div class="field">
+                <span>⏰</span>
+                <input type="time" id="endTime" value="17:30">
+            </div>
+        </div>
+    </div>
+
+    <!-- hourly rate  -->
+    <div class="row-duo" style="align-items: flex-end;">
+        <div class="input-group" style="flex:2;">
+            <label><i>💵</i> hourly rate ($/€/£)</label>
+            <div class="field">
+                <span>⚡</span>
+                <input type="number" id="hourlyRate" min="0" step="0.5" value="22.50" placeholder="0.00">
+            </div>
+        </div>
+        <div class="input-group" style="flex:1.2;">
+            <label><i>🍽️</i> unpaid break</label>
+            <div class="field" style="padding-right: 0.2rem;">
+                <span>⏲️</span>
+                <select id="breakMinutes">
+                    <option value="0">none</option>
+                    <option value="15">15 min</option>
+                    <option value="30" selected>30 min</option>
+                    <option value="45">45 min</option>
+                    <option value="60">1 hour</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- live summary card -->
+    <div class="summary" id="summaryCard">
+        <div class="pay-detail">
+            <span style="font-size: 1.2rem; opacity: 0.9;">💰 total pay</span>
+            <span class="total-pay" id="totalPayDisplay">$180.00</span>
+            <div class="rate-note" id="rateNote">22.50/h × 8.0 h</div>
+        </div>
+        <div class="hours-worked" id="hoursBadge">
+            <span>🕓</span> <span id="hoursDisplay">8.0</span> h
+        </div>
+    </div>
+
+    <!-- extra info and reset -->
+    <div class="footer-note">
+        <div class="break-toggle">
+            <span>⛔ overnight?</span>
+            <select id="overnightSelect">
+                <option value="no">same day</option>
+                <option value="yes">overnight (past midnight)</option>
+            </select>
+        </div>
+        <button id="resetButton" title="reset to defaults">↻ reset</button>
+    </div>
+    <div style="font-size: 0.82rem; color: #335577; margin-top: 0.8rem; text-align: right; opacity:0.7;">
+        ⏱️ calculates decimal hours · break deducted
+    </div>
+</div>
         
         <script src="assets/js/script.js" async defer></script>
     </body>
 </html>
+
