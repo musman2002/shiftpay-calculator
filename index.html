@@ -2,93 +2,151 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>💰 shift • pay calculator</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💰 Shift Manager • Pay Calculator</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-    <div class="card">
-        <h1>
-            ⏳ shift·pay
-            <span>time & rate</span>
-        </h1>
-        <div class="sub">enter shift start, end & hourly rate — pay calculated instantly</div>
+    <div class="container">
+        <!-- Main Calculator Card -->
+        <div class="card calculator-card">
+            <h1>
+                ⏳ shift·manager
+                <span>track & pay</span>
+            </h1>
+            <div class="sub">enter shift details and add to your list</div>
 
-        <!-- main inputs -->
-        <div class="row-duo">
-            <div class="input-group">
-                <label><i>🚀</i> shift start</label>
-                <div class="field">
-                    <span>🕒</span>
-                    <input type="time" id="startTime" value="09:00">
-                </div>
-            </div>
-            <div class="input-group">
-                <label><i>🏁</i> shift end</label>
-                <div class="field">
-                    <span>⏰</span>
-                    <input type="time" id="endTime" value="17:30">
-                </div>
-            </div>
-        </div>
-
-        <!-- hourly rate  -->
-        <div class="row-duo" style="align-items: flex-end;">
-            <div class="input-group" style="flex:2;">
-                <label><i>💵</i> hourly rate ($/€/£)</label>
-                <div class="field">
-                    <span>⚡</span>
-                    <input type="number" id="hourlyRate" min="0" step="0.5" value="22.50" placeholder="0.00">
-                </div>
-            </div>
-            <div class="input-group" style="flex:1.2;">
-                <label><i>🍽️</i> unpaid break</label>
-                <div class="field" style="padding-right: 0.2rem;">
-                    <span>⏲️</span>
-                    <select id="breakMinutes">
-                        <option value="0">none</option>
-                        <option value="15">15 min</option>
-                        <option value="30" selected>30 min</option>
-                        <option value="45">45 min</option>
-                        <option value="60">1 hour</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <!-- live summary card -->
-        <div class="summary" id="summaryCard">
-            <div class="pay-detail">
-                <span style="font-size: 1.2rem; opacity: 0.9;">💰 total pay</span>
-                <span class="total-pay" id="totalPayDisplay">$180.00</span>
-                <div class="rate-note" id="rateNote">22.50/h × 8.0 h</div>
-            </div>
-            <div class="hours-worked" id="hoursBadge">
-                <span>🕓</span> <span id="hoursDisplay">8.0</span> h
-            </div>
-        </div>
-
-        <!-- extra info and reset -->
-        <div class="footer-note">
-            <div class="break-toggle">
-                <span>⛔ overnight?</span>
-                <select id="overnightSelect">
-                    <option value="no">same day</option>
-                    <option value="yes">overnight (past midnight)</option>
+            <!-- Currency Selection -->
+            <div class="currency-selector">
+                <label><i>💱</i> currency</label>
+                <select id="currencySelect" class="currency-dropdown">
+                    <option value="$">USD ($)</option>
+                    <option value="€">EUR (€)</option>
+                    <option value="£">GBP (£)</option>
+                    <option value="¥">JPY (¥)</option>
+                    <option value="CA$">CAD (CA$)</option>
+                    <option value="A$">AUD (A$)</option>
+                    <option value="CHF">CHF (CHF)</option>
+                    <option value="₹">INR (₹)</option>
                 </select>
             </div>
-            <button id="resetButton" title="reset to defaults">↻ reset</button>
+
+            <!-- Shift Input Form -->
+            <div class="shift-form">
+                <div class="input-group">
+                    <label><i>📝</i> shift title</label>
+                    <div class="field">
+                        <span>🏷️</span>
+                        <input type="text" id="shiftTitle" placeholder="e.g., Monday morning" value="Monday shift">
+                    </div>
+                </div>
+
+                <div class="row-duo">
+                    <div class="input-group">
+                        <label><i>🚀</i> start time</label>
+                        <div class="field">
+                            <span>🕒</span>
+                            <input type="time" id="startTime" value="09:00">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label><i>🏁</i> end time</label>
+                        <div class="field">
+                            <span>⏰</span>
+                            <input type="time" id="endTime" value="17:30">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row-duo">
+                    <div class="input-group">
+                        <label><i>💵</i> hourly rate</label>
+                        <div class="field">
+                            <span>⚡</span>
+                            <input type="number" id="hourlyRate" min="0" step="0.5" value="22.50" placeholder="0.00">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label><i>🍽️</i> unpaid break</label>
+                        <div class="field">
+                            <span>⏲️</span>
+                            <select id="breakMinutes">
+                                <option value="0">none</option>
+                                <option value="15">15 min</option>
+                                <option value="30" selected>30 min</option>
+                                <option value="45">45 min</option>
+                                <option value="60">1 hour</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row-duo">
+                    <div class="input-group">
+                        <label><i>🌙</i> overnight?</label>
+                        <div class="field">
+                            <span>🔄</span>
+                            <select id="overnightSelect">
+                                <option value="no">same day</option>
+                                <option value="yes">overnight (past midnight)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label><i>📅</i> shift date</label>
+                        <div class="field">
+                            <span>📆</span>
+                            <input type="date" id="shiftDate" value="2026-02-19">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Shift Button -->
+                <button id="addShiftBtn" class="add-btn">
+                    <span>➕</span> add shift to list
+                </button>
+            </div>
+
+            <!-- Quick Preview -->
+            <div class="preview-card">
+                <div class="preview-row">
+                    <span>current shift preview:</span>
+                    <span id="previewTitle">Monday shift</span>
+                </div>
+                <div class="preview-row">
+                    <span id="previewHours">8.0 h</span>
+                    <span id="previewPay">$180.00</span>
+                </div>
+            </div>
         </div>
-        <div style="font-size: 0.82rem; color: #335577; margin-top: 0.8rem; text-align: right; opacity:0.7;">
-            ⏱️ calculates decimal hours · break deducted
+
+        <!-- Shifts List Sidebar -->
+        <div class="card shifts-card">
+            <div class="shifts-header">
+                <h2>📋 your shifts</h2>
+                <button id="clearAllBtn" class="clear-btn">clear all</button>
+            </div>
+
+            <!-- Shifts Container -->
+            <div id="shiftsContainer" class="shifts-container">
+                <!-- Shifts will be dynamically added here -->
+            </div>
+
+            <!-- Grand Total -->
+            <div class="grand-total" id="grandTotal">
+                <span>total earnings:</span>
+                <span id="totalAmount">$0.00</span>
+            </div>
+
+            <div class="shift-count" id="shiftCount">
+                total shifts: 0
+            </div>
         </div>
     </div>
 
-    <script src="assets/js/script.js" async defer></script>
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
